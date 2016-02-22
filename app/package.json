@@ -1,0 +1,14 @@
+{
+  "name": "middleware",
+  "version": "1.0.0",
+  "description": "this app helps to make requests to a variety of sources for returning ajax info into a lamp stack app",
+  "main": "nodeMiddleWare.js",
+  "author": "David J. Davis",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "express": "^4.13.4",
+    "request": "^2.69.0",
+    "xml2js": "^0.4.16"
+  }
+}

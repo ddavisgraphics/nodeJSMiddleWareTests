@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title>Testing Middle Ware</title>
+
+    <script src="jquery-2.2.0.min.js"></script>
+
+    <script>
+
+    // 96 MS
+    $(document).ready(function() {
+        var start = new Date().getTime();
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:3000/xml",
+            success: function(responseData) {
+                $("#xmlDate").html(responseData.request.date);
+                $("#xmlContent").html(responseData.request.content);
+                var end = new Date().getTime();
+                console.log('milliseconds passed', end - start);
+            },
+            error: function(jqXHR,error,exception) {
+                $("#error").html("Error.");
+            },
+            async:   true
+        });
+    });
+
+    // 94 MS
+    $(document).ready(function() {
+        var start = new Date().getTime();
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:3000/json",
+            success: function(responseData) {
+                $("#jsonDate").html(responseData.date);
+                $("#jsonContent").html(responseData.content);
+                var end = new Date().getTime();
+                console.log('milliseconds passed', end - start);
+            },
+            error: function(jqXHR,error,exception) {
+                $("#error").html("Error.");
+            },
+            async:   true
+        });
+    });
+
+    // 94 MS
+    $(document).ready(function() {
+        var start = new Date().getTime();
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:3000/serverHTML",
+            success: function(responseData) {
+                $("#htmlDate1").html(responseData.time);
+                $("#htmlContent1").html(responseData.content);
+                var end = new Date().getTime();
+                console.log('milliseconds passed', end - start);
+            },
+            error: function(jqXHR,error,exception) {
+                $("#error").html("Error.");
+            },
+            async:   true
+        });
+    });
+
+    // 5535 MS
+    $(document).ready(function() {
+        var start = new Date().getTime();
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:3000/hours",
+            success: function(responseData) {
+                $("#htmlContent").html(responseData.htmlHours);
+                var end = new Date().getTime();
+                console.log('milliseconds passed', end - start);
+            },
+            error: function(jqXHR,error,exception) {
+                console.log('error');
+                $("#error").html("Error.");
+            },
+            async:   true
+        });
+    });
+    </script>
+
+</head>
+
+<body>
+
+<h1>Middleware Testing</h1>
+<p> Node Specific testing.  This should be on a different server with the room allocated for playtesting the time between each server.  This example may potentially pull better results as faux results because of parsing between the same server. </p>
+
+<p id="error"></p>
+
+<div>
+    <h2>XML Test</h2>
+    <p id="xmlDate"></p>
+    <p id="xmlContent"></p>
+</div>
+
+<div>
+    <h2>JSON Test</h2>
+    <p id="jsonDate"></p>
+    <p id="jsonContent"></p>
+</div>
+
+
+<div>
+    <h2>HTML Test 1</h2>
+    <p id="htmlDate1"></p>
+    <p id="htmlContent1"></p>
+</div>
+
+<div>
+    <h2>HTML Test Hours Example</h2>
+    <p id="htmlDate"></p>
+    <p id="htmlContent"></p>
+</div>
+
+</body>
+
+</html>
